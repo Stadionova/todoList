@@ -6,7 +6,9 @@ import Tasks from '../Tasks/Tasks';
 const ToDoListWrapper = () => {
     return (
         <div>
-            <div><img src={logo} className="App-logo" alt="logo" /></div>
+            <div>
+                <img src={logo} className="App-logo" alt="logo" />
+            </div>
             <div className={classes.wrapper}>
                 <NewTask />
                 <Tasks />
