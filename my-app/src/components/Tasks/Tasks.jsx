@@ -4,11 +4,19 @@ import React from "react";
 
 class Tasks extends React.Component {
     render = () => {
-        return (
-            <div className={classes.tasksList} >
-                <EachTaskInList />
-            </div>
-        )
+        console.log('props_2 ', this.props);
+        if (this.props.state) {
+            return (
+                <div className={classes.tasksList} >
+                    <EachTaskInList state={true} />
+                </div>
+            )
+        } else {
+            return (
+                <div className={classes.tasksList} >
+                </div>
+            )
+        }
     }
 }
 

@@ -22,6 +22,11 @@ const store = createStore(toDoList);
 
 store.subscribe(() => {
     console.log('subscribed for any store chages', store.getState());
+    follow();
 });
+
+export const follow = () => { // actionCreator function which return action
+    return console.log(111);
+}
 
 export default store;
