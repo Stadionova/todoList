@@ -8,24 +8,21 @@ import React from "react";
 class ToDoListWrapper extends React.Component {
     state = {
         newTaskInputValue: '',
-        newTaskCreated: null
+        newTaskCreated: 'false'
     }
     render() {
         return (
             <div>
-                <div>
-                    <img src={logo} className="App-logo" alt="logo" />
-                </div>
+                <div><img src={logo} className="App-logo" alt="logo" /></div>
                 <div className={classes.wrapper}>
                     <NewTask store={store} updateData={this.updateData} />
-                    <Tasks store={store} state={this.state.name} />
+                    <Tasks store={store} state={this.state.newTaskCreated} />
                 </div>
             </div>
         )
     }
     updateData = (value) => {
-        console.log('input_value ', value);
-        this.setState({ name: true })
+        this.setState({ newTaskCreated: value })
     }
 }
 

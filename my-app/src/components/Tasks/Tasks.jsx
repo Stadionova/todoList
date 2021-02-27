@@ -4,8 +4,7 @@ import React from "react";
 
 class Tasks extends React.Component {
     render = () => {
-        console.log('props_tasks ', this.props);
-        if (this.props.state) {
+        if (this.props.state === 'true') {
             return (
                 <div className={classes.tasksList} >
                     <EachTaskInList state={true} />
