@@ -4,7 +4,7 @@ import React from "react";
 
 class Tasks extends React.Component {
     render = () => {
-        console.log('props_2 ', this.props);
+        console.log('props_tasks ', this.props);
         if (this.props.state) {
             return (
                 <div className={classes.tasksList} >
@@ -12,10 +12,7 @@ class Tasks extends React.Component {
                 </div>
             )
         } else {
-            return (
-                <div className={classes.tasksList} >
-                </div>
-            )
+            return <div className={classes.tasksList}></div>
         }
     }
 }

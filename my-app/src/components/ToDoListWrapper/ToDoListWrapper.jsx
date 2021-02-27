@@ -8,8 +8,7 @@ import React from "react";
 class ToDoListWrapper extends React.Component {
     state = {
         newTaskInputValue: '',
-        newTaskCreated: null,
-        name: false
+        newTaskCreated: null
     }
     render() {
         return (
@@ -19,19 +18,14 @@ class ToDoListWrapper extends React.Component {
                 </div>
                 <div className={classes.wrapper}>
                     <NewTask store={store} updateData={this.updateData} />
-                    <Tasks store={store} subFunc={this.subscribeStore} state={this.state.name} />
+                    <Tasks store={store} state={this.state.name} />
                 </div>
             </div>
         )
     }
     updateData = (value) => {
-        console.log('value ', value);
+        console.log('input_value ', value);
         this.setState({ name: true })
-    }
-    subscribeStore() {
-        return store.subscribe(() => {
-            console.log(222);
-        });
     }
 }
 

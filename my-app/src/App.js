@@ -7,14 +7,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <ToDoListWrapper store={store} subFunc={this.subscribeStore} />
+        <ToDoListWrapper store={store} />
       </div>
     );
-  }
-  subscribeStore() {
-    return store.subscribe(() => {
-      console.log(999);
-    });
   }
 }
 

@@ -5,8 +5,7 @@ import store from '../../store';
 class NewTask extends React.Component {
     state = {
         newTaskInputValue: '',
-        newTaskCreated: null,
-        name: 'Бумеранг не запущен'
+        newTaskCreated: null
     }
     catchInputChages = (event) => {
         let newState = this.state;
@@ -17,20 +16,13 @@ class NewTask extends React.Component {
             newTaskInputValue: this.state.newTaskInputValue
         });
     }
-    catchEnterPress(event) {
-        if (event.code === 'Enter') {
-            console.log('props_1 ', this.props);
-            return this.props.updateData(this.state.name);
-        }
-    }
     render() {
         return (
             <div className={classes.newTaskInput}>
                 <input
                     onKeyDown={(event) => {
                         if (event.code === 'Enter') {
-                            console.log('props_1 ', this.props);
-                            return this.props.updateData(this.state.name);
+                            return this.props.updateData(this.state.newTaskInputValue);
                         }
                     }}
                     onChange={this.catchInputChages}
