@@ -17,9 +17,10 @@ class EachTaskInList extends React.Component {
         console.log('newStoreValue ', this.props.store.getState().newTaskInputValue);
     }
     render() {
+        console.log('this.props ', this.props.taskValue);
         console.log('store_2 ', this.props.store.getState());
-        const newTaskValue = this.props.store.getState().newTaskInputValue;
-        return <div className={classes.task}>{newTaskValue}</div>
+        // const newTaskValue = this.props.store.getState().newTaskInputValue;
+        return <div className={classes.task}>{this.props.taskValue}</div>
     }
 }
 
