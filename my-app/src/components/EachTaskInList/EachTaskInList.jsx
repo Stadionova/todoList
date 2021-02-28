@@ -10,7 +10,7 @@ class EachTaskInList extends React.Component {
     }
     render() {
         return <div className={classes.task}>
-            <span>{this.props.taskValue}</span>
+            <span>{this.props.taskValue.value}</span>
         </div>
     }
 }

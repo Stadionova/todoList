@@ -9,7 +9,21 @@ class ToDoListWrapper extends React.Component {
     state = {
         newTaskInputValue: '',
         newTaskCreated: 'false',
-        tasks: [1, 2, 3, 4, 5, 6]
+        maxId: 3,
+        tasks: [
+            {
+                id: 1,
+                value: 'hello'
+            },
+            {
+                id: 2,
+                value: 'hi'
+            },
+            {
+                id: 3,
+                value: 'yulia'
+            }
+        ]
     }
     render() {
         return (
@@ -25,7 +39,13 @@ class ToDoListWrapper extends React.Component {
     updateData = (value) => {
         this.setState({ newTaskCreated: value.newTaskCreated });
         this.setState({ newTaskInputValue: value.newTaskInputValue });
-        this.setState({ tasks: [...this.state.tasks, value.newTaskInputValue] });
+        this.setState({ maxId: this.state.maxId + 1 });
+        this.setState({
+            tasks: [...this.state.tasks, {
+                id: this.state.maxId,
+                value: value.newTaskInputValue
+            }]
+        });
     }
 }
 
