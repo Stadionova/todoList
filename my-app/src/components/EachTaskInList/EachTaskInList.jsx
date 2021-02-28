@@ -9,7 +9,9 @@ class EachTaskInList extends React.Component {
         });
     }
     render() {
-        return <div className={classes.task}>{this.props.taskValue}</div>
+        return <div className={classes.task}>
+            <span>{this.props.taskValue}</span>
+        </div>
     }
 }
 

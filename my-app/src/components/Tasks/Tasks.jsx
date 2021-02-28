@@ -5,7 +5,7 @@ import store from '../../store';
 
 class Tasks extends React.Component {
     render() {
-        return <div>
+        return <div className={classes.tasksWrapper}>
             {this.props.tasksList.map(u => { // props.users передаём через функцию mapStateToProps в контейнерной компоненте
                 return (
                     <div className={classes.tasksList} >

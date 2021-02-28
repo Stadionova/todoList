@@ -6,4 +6,5 @@
     top: 16%;
     left: 19%;
     position: absolute;
+    overflow: scroll;
 }
