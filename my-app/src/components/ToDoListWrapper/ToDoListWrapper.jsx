@@ -22,7 +22,9 @@ class ToDoListWrapper extends React.Component {
         )
     }
     updateData = (value) => {
-        this.setState({ newTaskCreated: value })
+        this.setState({ newTaskCreated: value.newTaskCreated });
+        this.setState({ newTaskInputValue: value.newTaskInputValue });
+        console.log('store_3 ', store.getState());
     }
 }
 

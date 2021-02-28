@@ -13,6 +13,9 @@ function toDoList(state = initialState, action) { // reducer function, which get
         case 'ENTER_TYPED':
             state.newTaskCreated = action.newTaskCreated;
             return state;
+        case 'SET_NULL_INPUT_VALUE':
+            state.newTaskInputValue = action.newTaskInputValue;
+            return state;
         default:
             return state;
     }
