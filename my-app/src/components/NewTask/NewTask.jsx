@@ -22,13 +22,14 @@ class NewTask extends React.Component {
                 <input
                     onKeyDown={(event) => {
                         if (event.code === 'Enter' && (this.state.newTaskInputValue !== ' ')) {
-                            console.log(111);
                             let newState = this.state;
                             newState.newTaskCreated = 'true';
+                            newState.newTaskInputValue = this.state.newTaskInputValue;
+                            this.setState(newState);
+                            let newLocalState = this.props.updateData(this.state);
                             newState.newTaskInputValue = '';
                             this.setState(newState);
-                            console.log('this.state ', this.state);
-                            return this.props.updateData(this.state);
+                            return newLocalState;
                         }
                     }}
                     onChange={this.catchInputChages}
