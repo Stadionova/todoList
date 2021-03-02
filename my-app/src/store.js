@@ -2,7 +2,22 @@ import { createStore } from 'redux';
 
 const initialState = {
     newTaskInputValue: '',
-    newTaskCreated: false
+    newTaskCreated: 'false',
+    maxId: 3,
+    tasks: [
+        {
+            id: 0,
+            value: 'hello'
+        },
+        {
+            id: 1,
+            value: 'hi'
+        },
+        {
+            id: 2,
+            value: 'yulia'
+        }
+    ]
 };
 
 function toDoList(state = initialState, action) { // reducer function, which get action & return changed state
@@ -15,6 +30,24 @@ function toDoList(state = initialState, action) { // reducer function, which get
             return state;
         case 'SET_NULL_INPUT_VALUE':
             state.newTaskInputValue = action.newTaskInputValue;
+            return state;
+        case 'REMOVE_TASK':
+            const allTasks = state.tasks;
+            // console.log('allTasks ', allTasks);
+            allTasks.forEach((taskObj, index) => {
+                console.log('taskObj.id ', taskObj.id);
+                console.log('action.id ', action.id);
+                if (taskObj.id == action.id) {
+                    console.log('index ', index);
+                    allTasks.splice(index, 1);
+                    console.log('allTasks ', allTasks);
+                    state.tasks = allTasks;
+                    console.log('state_4 ', state);
+                    // this.setState({
+                    //     tasks: allTasks
+                    // });
+                }
+            });
             return state;
         default:
             return state;

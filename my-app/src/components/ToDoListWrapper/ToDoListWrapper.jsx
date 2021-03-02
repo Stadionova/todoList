@@ -12,15 +12,15 @@ class ToDoListWrapper extends React.Component {
         maxId: 3,
         tasks: [
             {
-                id: 1,
+                id: 0,
                 value: 'hello'
             },
             {
-                id: 2,
+                id: 1,
                 value: 'hi'
             },
             {
-                id: 3,
+                id: 2,
                 value: 'yulia'
             }
         ]
@@ -31,7 +31,10 @@ class ToDoListWrapper extends React.Component {
                 <div><img src={logo} className="App-logo" alt="logo" /></div>
                 <div className={classes.wrapper}>
                     <NewTask store={store} updateData={this.updateData} />
-                    <Tasks store={store} state={this.state.newTaskCreated} tasksList={this.state.tasks} />
+                    <Tasks store={store}
+                        state={this.state.newTaskCreated}
+                        removeTask={this.removeTask}
+                        tasksList={this.state.tasks} />
                 </div>
             </div>
         )
@@ -45,6 +48,16 @@ class ToDoListWrapper extends React.Component {
                 id: this.state.maxId,
                 value: value.newTaskInputValue
             }]
+        });
+    }
+    removeTask = (id) => {
+        console.log(111);
+        console.log('id ', id);
+        const allTasks = this.state.tasks;
+        console.log('allTasks ', allTasks);
+        allTasks.splice(id, 1);
+        this.setState({
+            tasks: allTasks
         });
     }
 }
