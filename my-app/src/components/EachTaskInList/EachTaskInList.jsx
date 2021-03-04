@@ -15,12 +15,9 @@ class EachTaskInList extends React.Component {
         });
     }
     render() {
-        console.log('this.props.taskValue.id ', this.props.taskValue.id);
-        console.log('this.props_each ', this.props);
         return <div className={classes.task} id={this.props.taskValue.id}>
             <span>{this.props.taskValue.value}</span>
             <button onClick={(event) => {
-                console.log('this.props_4 ', this.props);
                 let newState = this.state;
                 newState.id = event.target.parentNode.getAttribute('id');
                 this.setState(newState);
@@ -29,8 +26,6 @@ class EachTaskInList extends React.Component {
                     id: this.state.id
                 });
                 return this.props.removeTask(this.state.id)
-                // return event.target.parentNode.getAttribute('id');
-                // console.log('event ', event.target.parentNode.getAttribute('id'));
             }}>x</button>
         </div>
     }

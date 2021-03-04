@@ -51,10 +51,7 @@ class ToDoListWrapper extends React.Component {
         });
     }
     removeTask = (id) => {
-        console.log(111);
-        console.log('id ', id);
         const allTasks = this.state.tasks;
-        console.log('allTasks ', allTasks);
         allTasks.splice(id, 1);
         this.setState({
             tasks: allTasks

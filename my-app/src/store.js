@@ -6,16 +6,18 @@ const initialState = {
     maxId: 3,
     tasks: [
         {
-            id: 0,
-            value: 'hello'
-        },
-        {
-            id: 1,
-            value: 'hi'
-        },
-        {
-            id: 2,
-            value: 'yulia'
+            1: {
+                id: 1,
+                value: 'hello'
+            },
+            2: {
+                id: 2,
+                value: 'hi'
+            },
+            3: {
+                id: 3,
+                value: 'yulia'
+            }
         }
     ]
 };
@@ -33,19 +35,10 @@ function toDoList(state = initialState, action) { // reducer function, which get
             return state;
         case 'REMOVE_TASK':
             const allTasks = state.tasks;
-            // console.log('allTasks ', allTasks);
             allTasks.forEach((taskObj, index) => {
-                console.log('taskObj.id ', taskObj.id);
-                console.log('action.id ', action.id);
                 if (taskObj.id == action.id) {
-                    console.log('index ', index);
                     allTasks.splice(index, 1);
-                    console.log('allTasks ', allTasks);
                     state.tasks = allTasks;
-                    console.log('state_4 ', state);
-                    // this.setState({
-                    //     tasks: allTasks
-                    // });
                 }
             });
             return state;
