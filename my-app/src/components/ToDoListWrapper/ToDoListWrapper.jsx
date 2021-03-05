@@ -1,7 +1,7 @@
 import classes from "./ToDoListWrapper.module.css";
 import logo from './back.png';
 import NewTask from '../NewTask/NewTask';
-import Tasks from '../Tasks/Tasks';
+import TasksContainer from '../Tasks/TasksContainer';
 import React from "react";
 
 const ToDoListWrapper = (props) => {
@@ -13,7 +13,7 @@ const ToDoListWrapper = (props) => {
                     store={props.store}
                     updateData={props.updateData}
                 />
-                <Tasks store={props.store}
+                <TasksContainer store={props.store}
                     state={props.state}
                     removeTask={props.removeTask}
                     tasksList={props.tasksList}
