@@ -15,6 +15,16 @@ class EachTaskInListContainer extends React.Component {
             id: null
         });
     }
+    removeTaskHandler(event) {
+        let newState = this.state;
+        newState.id = event.target.parentNode.getAttribute('id');
+        this.setState(newState);
+        store.dispatch({
+            type: 'REMOVE_TASK',
+            id: this.state.id
+        });
+        return this.props.removeTask(this.state.id);
+    }
     render() {
         return (
             <div className={classes.task} id={this.props.taskValue.id}>
@@ -24,7 +34,7 @@ class EachTaskInListContainer extends React.Component {
                     state={this.state}
                     setState={this}
                     store={store}
-                    removeTask={this.props.removeTask}
+                    removeTask={this.removeTaskHandler.bind(this)}
                 />
             </div>
         )

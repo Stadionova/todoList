@@ -47,6 +47,7 @@ class ToDoListWrapperContainer extends React.Component {
         });
     }
     removeTask = (id) => {
+        console.log(2);
         const allTasks = this.state.tasks;
         allTasks.splice(id, 1);
         this.setState({
