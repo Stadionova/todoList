@@ -31,9 +31,6 @@ class EachTaskInListContainer extends React.Component {
                 <EachTaskInList
                     id={this.props.taskValue.id}
                     value={this.props.taskValue.value}
-                    state={this.state}
-                    setState={this}
-                    store={store}
                     removeTask={this.removeTaskHandler.bind(this)}
                 />
             </div>
