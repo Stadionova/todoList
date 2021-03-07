@@ -5,7 +5,7 @@ const NewTask = (props) => {
     return (
         <div className={classes.newTaskInput}>
             <input
-                onKeyDown={event => props.enterHandler(event)}
+                onKeyDown={props.enterHandler}
                 onChange={props.catchInputChages}
                 value={props.newTaskInputValue}
             />

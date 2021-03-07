@@ -53,4 +53,11 @@ store.subscribe(() => {
     console.log('subscribed for any store chages', store.getState());
 });
 
+export const catchInputChagesActionCreator = (newTaskInputValue) => {
+    return {
+        type: 'INPUT_TASK_VALUE_CHANGED',
+        newTaskInputValue: newTaskInputValue
+    }
+};
+
 export default store;
