@@ -13,7 +13,8 @@ const ToDoListWrapper = (props) => {
                     store={props.store}
                     updateData={props.updateData}
                 />
-                <TasksContainer store={props.store}
+                <TasksContainer
+                    store={props.store}
                     state={props.state}
                     removeTask={props.removeTask}
                     tasksList={props.tasksList}

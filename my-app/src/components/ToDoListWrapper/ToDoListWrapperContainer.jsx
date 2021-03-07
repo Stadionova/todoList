@@ -1,5 +1,4 @@
 import ToDoListWrapper from "./ToDoListWrapper";
-import store from '../../store';
 import React from "react";
 
 class ToDoListWrapperContainer extends React.Component {
@@ -26,7 +25,7 @@ class ToDoListWrapperContainer extends React.Component {
         return (
             <div>
                 <ToDoListWrapper
-                    store={store}
+                    store={this.props.store}
                     updateData={this.updateData}
                     state={this.state.newTaskCreated}
                     removeTask={this.removeTask}
@@ -47,7 +46,6 @@ class ToDoListWrapperContainer extends React.Component {
         });
     }
     removeTask = (id) => {
-        console.log(2);
         const allTasks = this.state.tasks;
         allTasks.splice(id, 1);
         this.setState({

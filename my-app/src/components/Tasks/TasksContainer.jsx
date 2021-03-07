@@ -1,7 +1,6 @@
 import classes from "./Tasks.module.css";
 import Tasks from './Tasks';
 import React from "react";
-import store from '../../store';
 
 const TasksContainer = (props) => {
     return (
@@ -11,9 +10,10 @@ const TasksContainer = (props) => {
                     <div className={classes.tasksList} >
                         <Tasks
                             state={true}
-                            store={store}
+                            store={props.store}
                             removeTask={props.removeTask}
-                            taskValue={task} />
+                            taskValue={task}
+                        />
                     </div>
                 )
             })}

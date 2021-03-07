@@ -1,6 +1,5 @@
 import NewTask from "./NewTask";
 import React from "react";
-import store from '../../store';
 
 class NewTaskContainer extends React.Component {
     state = {
@@ -11,7 +10,7 @@ class NewTaskContainer extends React.Component {
         let newState = this.state;
         newState.newTaskInputValue = event.target.value;
         this.setState(newState);
-        store.dispatch({
+        this.props.store.dispatch({
             type: 'INPUT_TASK_VALUE_CHANGED',
             newTaskInputValue: this.state.newTaskInputValue
         });
