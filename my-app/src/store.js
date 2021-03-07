@@ -60,10 +60,10 @@ export const catchInputChagesActionCreator = (newTaskInputValue) => {
     }
 };
 
-export const removeTaskActionCreator = () => {
+export const removeTaskActionCreator = (id) => {
     return {
         type: 'REMOVE_TASK',
-        id: null
+        id: id
     }
 };
 

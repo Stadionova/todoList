@@ -4,24 +4,11 @@ import { removeTaskActionCreator } from "./../../store";
 import React from "react";
 
 class EachTaskInListContainer extends React.Component {
-    state = {
-        newTaskInputValue: '',
-        newTaskCreated: null,
-        id: null
-    }
-    componentDidMount() {
-        this.props.store.dispatch({
-            type: 'REMOVE_TASK',
-            id: null
-        });
-    }
     removeTaskHandler(event) {
-        let newState = this.state;
-        newState.id = event.target.parentNode.getAttribute('id');
-        this.setState(newState);
-        let action = removeTaskActionCreator();
+        let deletedTaskId = event.target.parentNode.getAttribute('id');
+        let action = removeTaskActionCreator(deletedTaskId);
         this.props.store.dispatch(action);
-        return this.props.removeTask(this.state.id);
+        return this.props.removeTask(deletedTaskId);
     }
     render() {
         return (
