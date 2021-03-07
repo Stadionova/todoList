@@ -1,7 +1,7 @@
 import classes from "./EachTaskInList.module.css";
 import EachTaskInList from "./EachTaskInList";
+import { removeTaskActionCreator } from "./../../store";
 import React from "react";
-import store from '../../store';
 
 class EachTaskInListContainer extends React.Component {
     state = {
@@ -19,10 +19,8 @@ class EachTaskInListContainer extends React.Component {
         let newState = this.state;
         newState.id = event.target.parentNode.getAttribute('id');
         this.setState(newState);
-        store.dispatch({
-            type: 'REMOVE_TASK',
-            id: this.state.id
-        });
+        let action = removeTaskActionCreator();
+        this.props.store.dispatch(action);
         return this.props.removeTask(this.state.id);
     }
     render() {
