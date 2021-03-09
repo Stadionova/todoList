@@ -10,7 +10,7 @@ const TasksContainer = (props) => {
                     <div className={classes.tasksList} >
                         <Tasks
                             state={true}
-                            store={props.store}
+                            dispatch={props.dispatch}
                             removeTask={props.removeTask}
                             taskValue={task}
                         />

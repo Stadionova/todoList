@@ -12,7 +12,7 @@ class NewTaskContainer extends React.Component {
         newState.newTaskInputValue = event.target.value;
         this.setState(newState);
         let action = catchInputChagesActionCreator(this.state.newTaskInputValue);
-        return this.props.store.dispatch(action);
+        return this.props.dispatch(action);
     }
     enterHandler(event) {
         if (event.code === 'Enter'

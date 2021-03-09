@@ -10,11 +10,11 @@ const ToDoListWrapper = (props) => {
             <div><img src={logo} className="App-logo" alt="logo" /></div>
             <div className={classes.wrapper}>
                 <NewTaskContainer
-                    store={props.store}
+                    dispatch={props.store.dispatch}
                     updateData={props.updateData}
                 />
                 <TasksContainer
-                    store={props.store}
+                    dispatch={props.store.dispatch}
                     state={props.state}
                     removeTask={props.removeTask}
                     tasksList={props.tasksList}

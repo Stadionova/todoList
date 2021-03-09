@@ -7,7 +7,7 @@ class EachTaskInListContainer extends React.Component {
     removeTaskHandler(event) {
         let deletedTaskId = event.target.parentNode.getAttribute('id');
         let action = removeTaskActionCreator(deletedTaskId);
-        this.props.store.dispatch(action);
+        this.props.dispatch(action);
         return this.props.removeTask(deletedTaskId);
     }
     render() {
