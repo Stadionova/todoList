@@ -22,7 +22,7 @@ const initialState = {
     ]
 };
 
-function toDoList(state = initialState, action) { // reducer function, which get action & return changed state
+function toDoListReducer(state = initialState, action) { // reducer function, which get action & return changed state
     switch (action.type) {
         case 'INPUT_TASK_VALUE_CHANGED':
             state.newTaskInputValue = action.newTaskInputValue;
@@ -47,7 +47,7 @@ function toDoList(state = initialState, action) { // reducer function, which get
     }
 }
 
-const store = createStore(toDoList);
+const store = createStore(toDoListReducer);
 
 store.subscribe(() => {
     console.log('subscribed for any store chages', store.getState());
