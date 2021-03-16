@@ -9,10 +9,12 @@ const TasksContainer = (props) => {
                 return (
                     <div className={classes.tasksList} >
                         <Tasks
+                            store={props.store}
                             state={true}
                             dispatch={props.dispatch}
                             removeTask={props.removeTask}
                             taskValue={task}
+                            tasksList={props.tasksList}
                         />
                     </div>
                 )

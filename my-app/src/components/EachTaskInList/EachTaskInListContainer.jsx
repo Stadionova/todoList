@@ -6,9 +6,13 @@ import React from "react";
 class EachTaskInListContainer extends React.Component {
     removeTaskHandler(event) {
         let deletedTaskId = event.target.parentNode.getAttribute('id');
-        let action = removeTaskActionCreator(deletedTaskId);
-        this.props.dispatch(action);
-        return this.props.removeTask(deletedTaskId);
+        this.props.tasksList.map((task, index) => {
+            if (deletedTaskId == task.id) {
+                let action = removeTaskActionCreator(index);
+                this.props.dispatch(action);
+                return this.props.removeTask(index);
+            }
+        })
     }
     render() {
         return (

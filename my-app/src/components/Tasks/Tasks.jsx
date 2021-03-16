@@ -6,10 +6,13 @@ const Tasks = (props) => {
     return (
         <div className={classes.tasksList} >
             <EachTaskInListContainer
+                store={props.store}
                 state={props.state}
                 dispatch={props.dispatch}
                 removeTask={props.removeTask}
-                taskValue={props.taskValue} />
+                taskValue={props.taskValue}
+                tasksList={props.tasksList}
+            />
         </div>
     )
 }
