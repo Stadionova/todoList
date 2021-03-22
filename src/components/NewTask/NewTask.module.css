@@ -1,0 +1,16 @@
+.newTaskInput {
+    width: 90%;
+    height: 10%;
+    border: 2px solid black;
+    background-color: burlywood;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.newTaskInput input {
+    width: 90%;
+    height: 30%;
+    background-color: lightgoldenrodyellow;
+    margin-top: 15px;
+}

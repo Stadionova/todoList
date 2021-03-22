@@ -1,0 +1,14 @@
+.tasksList {
+    width: 90%;
+    height: 80%;
+    border: 2px solid black;
+    background-color: darkkhaki;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tasksWrapper {
+    padding-bottom: 20px;
+}

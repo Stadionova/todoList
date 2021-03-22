@@ -1,0 +1,10 @@
+.wrapper {
+    width: 61.6%;
+    height: 72%;
+    border: 2px solid black;
+    background-color: bisque;
+    top: 16%;
+    left: 19%;
+    position: absolute;
+    overflow: scroll;
+}
