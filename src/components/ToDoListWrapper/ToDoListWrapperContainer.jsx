@@ -54,7 +54,9 @@ class ToDoListWrapperContainer extends React.Component {
         const allTasks = JSON.parse(localStorage.getItem('items'));
         allTasks.splice(id, 1);
 
-        console.log('allTasks ', allTasks);
+        if (allTasks.length === 0) {
+            localStorage.setItem('itemsMaxId_1', 0);
+        }
 
         localStorage.setItem('items', JSON.stringify(allTasks));
 

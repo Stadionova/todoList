@@ -5,12 +5,9 @@ import React from "react";
 
 class EachTaskInListContainer extends React.Component {
     removeTaskHandler(event) {
-        console.log(1);
         let deletedTaskId = event.target.parentNode.getAttribute('id');
-        console.log('deletedTaskId ', deletedTaskId);
         this.props.tasksList.map((task, index) => {
             if (deletedTaskId == task.id) {
-                console.log(2);
                 let action = removeTaskActionCreator(index);
                 this.props.dispatch(action);
                 return this.props.removeTask(index);
