@@ -5,23 +5,14 @@ class ToDoListWrapperContainer extends React.Component {
     state = {
         newTaskInputValue: '',
         newTaskCreated: 'false',
-        maxId: 3,
-        tasks: [
-            {
-                id: 0,
-                value: 'hello'
-            },
-            {
-                id: 1,
-                value: 'hi'
-            },
-            {
-                id: 2,
-                value: 'yulia'
-            }
-        ]
+        maxId: 1,
+        tasks: []
     }
     render() {
+        !localStorage.getItem('items') && localStorage.setItem('items', JSON.stringify([]));
+
+        const data = JSON.parse(localStorage.getItem('items'));
+
         return (
             <div>
                 <ToDoListWrapper
@@ -29,25 +20,44 @@ class ToDoListWrapperContainer extends React.Component {
                     updateData={this.updateData}
                     state={this.state.newTaskCreated}
                     removeTask={this.removeTask}
-                    tasksList={this.state.tasks}
+                    tasksList={data}
+                    id={this.state.maxId}
                 />
             </div>
         )
     }
     updateData = (value) => {
+        const currentMaxId = +localStorage.getItem('itemsMaxId_1');
+
         this.setState({ newTaskCreated: value.newTaskCreated });
         this.setState({ newTaskInputValue: value.newTaskInputValue });
-        this.setState({ maxId: this.state.maxId + 1 });
+        this.setState({ maxId: currentMaxId + 1 });
+
         this.setState({
             tasks: [...this.state.tasks, {
-                id: this.state.maxId,
+                id: currentMaxId + 1,
                 value: value.newTaskInputValue
             }]
         });
+
+        const data = JSON.parse(localStorage.getItem('items'));
+
+        const newTaskToStorage = [...data, {
+            id: currentMaxId + 1,
+            value: value.newTaskInputValue
+        }];
+
+        let itemsArray = newTaskToStorage;
+        localStorage.setItem('items', JSON.stringify(itemsArray));
     }
     removeTask = (id) => {
-        const allTasks = this.state.tasks;
+        const allTasks = JSON.parse(localStorage.getItem('items'));
         allTasks.splice(id, 1);
+
+        console.log('allTasks ', allTasks);
+
+        localStorage.setItem('items', JSON.stringify(allTasks));
+
         this.setState({
             tasks: allTasks
         });

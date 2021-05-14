@@ -18,6 +18,7 @@ const ToDoListWrapper = (props) => {
                     state={props.state}
                     removeTask={props.removeTask}
                     tasksList={props.tasksList}
+                    id={props.id}
                 />
             </div>
         </div>
