@@ -15,7 +15,8 @@ class NewTaskContainer extends React.Component {
         return this.props.dispatch(action);
     }
     enterHandler(event) {
-        if (event.code === 'Enter'
+        if ((event.code === 'Enter'
+            || event.keyCode === 13)
             && (this.state.newTaskInputValue !== ' ')) {
             let newState = this.state;
             newState.newTaskCreated = 'true';
@@ -27,15 +28,16 @@ class NewTaskContainer extends React.Component {
             return newLocalState;
         }
     }
-    render() {
-        return (
-            <NewTask
-                newTaskInputValue={this.state.newTaskInputValue}
-                catchInputChages={this.catchInputChages}
-                enterHandler={this.enterHandler.bind(this)}
-            />
-        )
-    }
+}
+render() {
+    return (
+        <NewTask
+            newTaskInputValue={this.state.newTaskInputValue}
+            catchInputChages={this.catchInputChages}
+            enterHandler={this.enterHandler.bind(this)}
+        />
+    )
+}
 }
 
 export default NewTaskContainer;
