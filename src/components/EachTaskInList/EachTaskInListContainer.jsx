@@ -7,12 +7,10 @@ class EachTaskInListContainer extends React.Component {
     removeTaskHandler(event) {
         let deletedTaskId = event.target.parentNode.getAttribute('id');
         this.props.tasksList.map((task, index) => {
-            if (+deletedTaskId === task.id) {
+            if (deletedTaskId == task.id) {
                 let action = removeTaskActionCreator(index);
                 this.props.dispatch(action);
                 return this.props.removeTask(index);
-            } else {
-                return false;
             }
         })
     }
@@ -23,7 +21,6 @@ class EachTaskInListContainer extends React.Component {
                     id={this.props.taskValue.id}
                     value={this.props.taskValue.value}
                     removeTask={this.removeTaskHandler.bind(this)}
-                    key={this.props.taskValue.id}
                 />
             </div>
         )

@@ -14,17 +14,32 @@ class NewTaskContainer extends React.Component {
         let action = catchInputChagesActionCreator(this.state.newTaskInputValue);
         return this.props.dispatch(action);
     }
+    checkIsInputValueContainOnlySpaces = (inputValue) => {
+        let message = inputValue;
+        if (message.length > 0) {
+            let pattern = /^[\s]+$/;
+            if (!pattern.test(message)) {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
     enterHandler(event) {
-        if ((event.code === 'Enter' || event.keyCode === 13)
-            && (this.state.newTaskInputValue !== ' ')) {
-            let newState = this.state;
-            newState.newTaskCreated = 'true';
-            newState.newTaskInputValue = this.state.newTaskInputValue;
-            this.setState(newState);
-            let newLocalState = this.props.updateData(this.state);
-            newState.newTaskInputValue = '';
-            this.setState(newState);
-            return newLocalState;
+        if (event.code === 'Enter' || event.keyCode === 13) {
+            const isSpacesInInput = this.checkIsInputValueContainOnlySpaces(this.state.newTaskInputValue);
+            if (isSpacesInInput) {
+                let newState = this.state;
+                newState.newTaskCreated = 'true';
+                newState.newTaskInputValue = this.state.newTaskInputValue;
+                this.setState(newState);
+                let newLocalState = this.props.updateData(this.state);
+                newState.newTaskInputValue = '';
+                this.setState(newState);
+                return newLocalState;
+            } else {
+                return false;
+            }
         }
     }
     render() {
