@@ -1,8 +1,6 @@
 import ToDoListWrapper from "./ToDoListWrapper";
 import React from "react";
 
-console.log(111);
-
 class ToDoListWrapperContainer extends React.Component {
     state = {
         newTaskInputValue: '',

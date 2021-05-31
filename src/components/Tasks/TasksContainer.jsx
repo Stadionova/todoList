@@ -16,6 +16,7 @@ const TasksContainer = (props) => {
                             removeTask={props.removeTask}
                             taskValue={task}
                             tasksList={props.tasksList}
+                            key={task.id}
                         />
                     </div>
                 )
