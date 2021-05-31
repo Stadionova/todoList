@@ -12,12 +12,6 @@ function toDoListReducer(state = initialState, action) { // reducer function, wh
         case 'INPUT_TASK_VALUE_CHANGED':
             state.newTaskInputValue = action.newTaskInputValue;
             return state;
-        case 'ENTER_TYPED':
-            state.newTaskCreated = action.newTaskCreated;
-            return state;
-        case 'SET_NULL_INPUT_VALUE':
-            state.newTaskInputValue = action.newTaskInputValue;
-            return state;
         case 'REMOVE_TASK':
             const allTasks = state.tasks;
             allTasks.forEach((taskObj, index) => {
