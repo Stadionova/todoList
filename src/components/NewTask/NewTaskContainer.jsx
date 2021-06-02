@@ -11,14 +11,14 @@ class NewTaskContainer extends React.Component {
         let newState = this.state;
         newState.newTaskInputValue = event.target.value;
         this.setState(newState);
-        let action = catchInputChagesActionCreator(this.state.newTaskInputValue);
-        return this.props.dispatch(action);
+        return this.props.dispatch(catchInputChagesActionCreator(this.state.newTaskInputValue));
+        // return this.props.dispatch(action);
     }
     checkIsInputValueContainOnlySpaces = (inputValue) => {
-        let message = inputValue;
-        if (message.length > 0) {
+        // let message = inputValue;
+        if (inputValue.length > 0) {
             let pattern = /^[\s]+$/;
-            if (!pattern.test(message)) {
+            if (!pattern.test(inputValue)) {
                 return true;
             }
         } else {
