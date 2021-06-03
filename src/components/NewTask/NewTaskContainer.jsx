@@ -1,6 +1,6 @@
 import NewTask from "./NewTask";
 import React from "react";
-import { catchInputChagesActionCreator } from "./../../store";
+import { catchInputChagesActionCreator, addTaskByEnterActionCreator } from "./../../store";
 
 class NewTaskContainer extends React.Component {
     state = {
@@ -36,7 +36,8 @@ class NewTaskContainer extends React.Component {
                 let newLocalState = this.props.updateData(this.state);
                 newState.newTaskInputValue = '';
                 this.setState(newState);
-                return newLocalState;
+                // return newLocalState;
+                return this.props.dispatch(addTaskByEnterActionCreator(newLocalState));
             } else {
                 return false;
             }
