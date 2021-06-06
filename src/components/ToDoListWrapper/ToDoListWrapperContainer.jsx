@@ -1,13 +1,9 @@
 import ToDoListWrapper from "./ToDoListWrapper";
 import React from "react";
+import { connect } from "react-redux";
+import { catchInputChangesActionCreator, removeTaskActionCreator } from "../../store";
 
 class ToDoListWrapperContainer extends React.Component {
-    state = {
-        newTaskInputValue: '',
-        newTaskCreated: 'false',
-        maxId: 1,
-        tasks: []
-    }
     render() {
         !localStorage.getItem('items') && localStorage.setItem('items', JSON.stringify([]));
 
@@ -16,12 +12,12 @@ class ToDoListWrapperContainer extends React.Component {
         return (
             <div>
                 <ToDoListWrapper
-                    store={this.props.store}
                     updateData={this.updateData}
-                    state={this.state.newTaskCreated}
+                    state={this.props.newTaskCreated}
                     removeTask={this.removeTask}
                     tasksList={data}
-                    id={this.state.maxId}
+                    id={this.props.maxId}
+                    onChange={this.props.onChange}
                 />
             </div>
         )
@@ -34,7 +30,7 @@ class ToDoListWrapperContainer extends React.Component {
         this.setState({ maxId: currentMaxId + 1 });
 
         this.setState({
-            tasks: [...this.state.tasks, {
+            tasks: [...this.props.tasks, {
                 id: currentMaxId + 1,
                 value: value.newTaskInputValue
             }]
@@ -66,4 +62,23 @@ class ToDoListWrapperContainer extends React.Component {
     }
 }
 
-export default ToDoListWrapperContainer;
+const mapStateToProps = function (state) {
+    return {
+        newTaskCreated: state.newTaskCreated,
+        id: state.maxId,
+        tasks: state.tasks
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onChange: currentValue => {
+            dispatch(catchInputChangesActionCreator(currentValue));
+        },
+        onClick: id => {
+            dispatch(removeTaskActionCreator(id));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDoListWrapperContainer);

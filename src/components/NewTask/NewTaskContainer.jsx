@@ -1,6 +1,6 @@
 import NewTask from "./NewTask";
 import React from "react";
-import { catchInputChangesActionCreator, addTaskByEnterActionCreator } from "./../../store";
+import { addTaskByEnterActionCreator } from "./../../store";
 
 class NewTaskContainer extends React.Component {
     state = {
@@ -8,7 +8,6 @@ class NewTaskContainer extends React.Component {
         newTaskCreated: null
     }
     checkIsInputValueContainOnlySpaces = (inputValue) => {
-        // let message = inputValue;
         if (inputValue.length > 0) {
             let pattern = /^[\s]+$/;
             if (!pattern.test(inputValue)) {
@@ -23,8 +22,7 @@ class NewTaskContainer extends React.Component {
         newState.newTaskInputValue = event.target.value;
         this.setState(newState);
         const currentValue = event.target.value;
-        return this.props.dispatch(catchInputChangesActionCreator(currentValue));
-        // return this.props.dispatch(action);
+        return this.props.dispatch(currentValue);
     }
     enterHandler(event) {
         if (event.code === 'Enter' || event.keyCode === 13) {
@@ -37,7 +35,6 @@ class NewTaskContainer extends React.Component {
                 let newLocalState = this.props.updateData(this.state);
                 newState.newTaskInputValue = '';
                 this.setState(newState);
-                // return newLocalState;
                 return this.props.dispatch(addTaskByEnterActionCreator(newLocalState));
             } else {
                 return false;

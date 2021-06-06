@@ -4,17 +4,17 @@ import NewTaskContainer from '../NewTask/NewTaskContainer';
 import TasksContainer from '../Tasks/TasksContainer';
 import React from "react";
 
-const ToDoListWrapper = ({ store, updateData, state, removeTask, tasksList, id }) => {
+const ToDoListWrapper = ({ updateData, state, removeTask, tasksList, id, onChange }) => {
     return (
         <div>
             <div><img src={logo} className="App-logo" alt="logo" /></div>
             <div className={classes.wrapper}>
                 <NewTaskContainer
-                    dispatch={store.dispatch}
+                    dispatch={onChange}
                     updateData={updateData}
                 />
                 <TasksContainer
-                    dispatch={store.dispatch}
+                    dispatch={onChange}
                     state={state}
                     removeTask={removeTask}
                     tasksList={tasksList}

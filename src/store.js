@@ -14,21 +14,16 @@ const initialState = {
 function toDoListReducer(state = initialState, action) {
     switch (action.type) {
         case INPUT_TASK_VALUE_CHANGED:
-            console.log(1);
-            return Object.assign({}, state, {// возвращаю копию стэйта
+            return Object.assign({}, state, { // возвращаю копию стэйта
                 ...state,
                 newTaskInputValue: action.newTaskInputValue
             });
-        // state.newTaskInputValue = action.newTaskInputValue;
-        // return state + action.payload
-        // return state;
         case REMOVE_TASK:
-            console.log(2);
             const allTasks = state.tasks;
             allTasks.forEach((taskObj, index) => {
                 if (taskObj.id == action.id) {
                     allTasks.splice(index, 1);
-                    return Object.assign({}, state, {// возвращаю копию стэйта
+                    return Object.assign({}, state, { // возвращаю копию стэйта
                         ...state,
                         tasks: allTasks
                     });
@@ -36,14 +31,6 @@ function toDoListReducer(state = initialState, action) {
             });
             return state;
         case ADD_TASK:
-            console.log(3);
-            // const allTasks = state.tasks;
-            // allTasks.forEach((taskObj, index) => {
-            //     if (taskObj.id == action.id) {
-            //         allTasks.splice(index, 1);
-            //         state.tasks = allTasks;
-            //     }
-            // });
             return state;
         default:
             return state;
@@ -52,18 +39,12 @@ function toDoListReducer(state = initialState, action) {
 
 const store = createStore(toDoListReducer, initialState);
 
-// store.subscribe(() => {
-//     console.log("State has changed" + store.getState());
-// });
-
 export const catchInputChangesActionCreator = (newTaskInputValue) => { // action creator
     return {
         type: INPUT_TASK_VALUE_CHANGED,
         newTaskInputValue: newTaskInputValue
     }
 };
-
-// store.dispatch(catchInputChangesActionCreator(1));
 
 export const removeTaskActionCreator = (id) => { // action creator
     return {
