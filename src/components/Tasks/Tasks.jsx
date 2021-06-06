@@ -1,10 +1,9 @@
-import classes from "./Tasks.module.css";
 import EachTaskInListContainer from '../EachTaskInList/EachTaskInListContainer';
 import React from "react";
 
 const Tasks = ({ store, state, dispatch, removeTask, taskValue, tasksList }) => {
     return (
-        <div className={classes.tasksList} >
+        <div>
             <EachTaskInListContainer
                 store={store}
                 state={state}

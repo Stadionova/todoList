@@ -1,4 +1,3 @@
-import classes from "./EachTaskInList.module.css";
 import EachTaskInList from "./EachTaskInList";
 import { removeTaskActionCreator } from "./../../store";
 import React from "react";
@@ -16,7 +15,7 @@ class EachTaskInListContainer extends React.Component {
     }
     render() {
         return (
-            <div className={classes.task} id={this.props.taskValue.id}>
+            <div>
                 <EachTaskInList
                     id={this.props.taskValue.id}
                     value={this.props.taskValue.value}
