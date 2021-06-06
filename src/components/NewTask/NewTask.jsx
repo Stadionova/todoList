@@ -1,13 +1,13 @@
 import classes from "./NewTask.module.css";
 import React from "react";
 
-const NewTask = (props) => {
+const NewTask = ({ enterHandler, catchInputChanges, newTaskInputValue }) => {
     return (
         <div className={classes.newTaskInput}>
             <input
-                onKeyDown={props.enterHandler}
-                onChange={props.catchInputChages}
-                value={props.newTaskInputValue}
+                onKeyDown={enterHandler}
+                onChange={catchInputChanges}
+                value={newTaskInputValue}
             />
         </div>
     )

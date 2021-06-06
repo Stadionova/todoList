@@ -1,18 +1,11 @@
 import NewTask from "./NewTask";
 import React from "react";
-import { catchInputChagesActionCreator, addTaskByEnterActionCreator } from "./../../store";
+import { catchInputChangesActionCreator, addTaskByEnterActionCreator } from "./../../store";
 
 class NewTaskContainer extends React.Component {
     state = {
         newTaskInputValue: '',
         newTaskCreated: null
-    }
-    catchInputChages = (event) => {
-        let newState = this.state;
-        newState.newTaskInputValue = event.target.value;
-        this.setState(newState);
-        return this.props.dispatch(catchInputChagesActionCreator(this.state.newTaskInputValue));
-        // return this.props.dispatch(action);
     }
     checkIsInputValueContainOnlySpaces = (inputValue) => {
         // let message = inputValue;
@@ -24,6 +17,14 @@ class NewTaskContainer extends React.Component {
         } else {
             return false;
         }
+    }
+    catchInputChanges = (event) => {
+        let newState = this.state;
+        newState.newTaskInputValue = event.target.value;
+        this.setState(newState);
+        const currentValue = event.target.value;
+        return this.props.dispatch(catchInputChangesActionCreator(currentValue));
+        // return this.props.dispatch(action);
     }
     enterHandler(event) {
         if (event.code === 'Enter' || event.keyCode === 13) {
@@ -47,7 +48,7 @@ class NewTaskContainer extends React.Component {
         return (
             <NewTask
                 newTaskInputValue={this.state.newTaskInputValue}
-                catchInputChages={this.catchInputChages}
+                catchInputChanges={this.catchInputChanges}
                 enterHandler={this.enterHandler.bind(this)}
             />
         )

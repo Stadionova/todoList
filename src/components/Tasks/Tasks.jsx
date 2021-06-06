@@ -2,16 +2,16 @@ import classes from "./Tasks.module.css";
 import EachTaskInListContainer from '../EachTaskInList/EachTaskInListContainer';
 import React from "react";
 
-const Tasks = (props) => {
+const Tasks = ({ store, state, dispatch, removeTask, taskValue, tasksList }) => {
     return (
         <div className={classes.tasksList} >
             <EachTaskInListContainer
-                store={props.store}
-                state={props.state}
-                dispatch={props.dispatch}
-                removeTask={props.removeTask}
-                taskValue={props.taskValue}
-                tasksList={props.tasksList}
+                store={store}
+                state={state}
+                dispatch={dispatch}
+                removeTask={removeTask}
+                taskValue={taskValue}
+                tasksList={tasksList}
             />
         </div>
     )

@@ -2,20 +2,20 @@ import classes from "./Tasks.module.css";
 import Tasks from './Tasks';
 import React from "react";
 
-const TasksContainer = (props) => {
+const TasksContainer = ({ store, dispatch, removeTask, tasksList }) => {
     return (
         <div className={classes.tasksWrapper}>
-            {props.tasksList.map(task => {
+            { tasksList.map(task => {
                 localStorage.setItem('itemsMaxId_1', task.id);
                 return (
                     <div className={classes.tasksList} >
                         <Tasks
-                            store={props.store}
+                            store={store}
                             state={true}
-                            dispatch={props.dispatch}
-                            removeTask={props.removeTask}
+                            dispatch={dispatch}
+                            removeTask={removeTask}
                             taskValue={task}
-                            tasksList={props.tasksList}
+                            tasksList={tasksList}
                         />
                     </div>
                 )

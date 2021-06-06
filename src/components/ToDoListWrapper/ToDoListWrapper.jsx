@@ -4,21 +4,21 @@ import NewTaskContainer from '../NewTask/NewTaskContainer';
 import TasksContainer from '../Tasks/TasksContainer';
 import React from "react";
 
-const ToDoListWrapper = (props) => {
+const ToDoListWrapper = ({ store, updateData, state, removeTask, tasksList, id }) => {
     return (
         <div>
             <div><img src={logo} className="App-logo" alt="logo" /></div>
             <div className={classes.wrapper}>
                 <NewTaskContainer
-                    dispatch={props.store.dispatch}
-                    updateData={props.updateData}
+                    dispatch={store.dispatch}
+                    updateData={updateData}
                 />
                 <TasksContainer
-                    dispatch={props.store.dispatch}
-                    state={props.state}
-                    removeTask={props.removeTask}
-                    tasksList={props.tasksList}
-                    key={props.id}
+                    dispatch={store.dispatch}
+                    state={state}
+                    removeTask={removeTask}
+                    tasksList={tasksList}
+                    key={id}
                 />
             </div>
         </div>

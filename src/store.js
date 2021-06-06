@@ -12,27 +12,31 @@ const initialState = {
 // (currentState, action) => newState
 // Редуктор принимает два аргумента - состояние и действие - и возвращает новое состояние.
 function toDoListReducer(state = initialState, action) {
-    console.log("action ", action);
     switch (action.type) {
         case INPUT_TASK_VALUE_CHANGED:
-            return { // возвращаю копию стэйта
+            console.log(1);
+            return Object.assign({}, state, {// возвращаю копию стэйта
                 ...state,
-                ...action.newTaskInputValue,
                 newTaskInputValue: action.newTaskInputValue
-            }
+            });
         // state.newTaskInputValue = action.newTaskInputValue;
         // return state + action.payload
         // return state;
         case REMOVE_TASK:
+            console.log(2);
             const allTasks = state.tasks;
             allTasks.forEach((taskObj, index) => {
                 if (taskObj.id == action.id) {
                     allTasks.splice(index, 1);
-                    state.tasks = allTasks;
+                    return Object.assign({}, state, {// возвращаю копию стэйта
+                        ...state,
+                        tasks: allTasks
+                    });
                 }
             });
             return state;
         case ADD_TASK:
+            console.log(3);
             // const allTasks = state.tasks;
             // allTasks.forEach((taskObj, index) => {
             //     if (taskObj.id == action.id) {
@@ -52,14 +56,14 @@ const store = createStore(toDoListReducer, initialState);
 //     console.log("State has changed" + store.getState());
 // });
 
-export const catchInputChagesActionCreator = (newTaskInputValue) => { // action creator
+export const catchInputChangesActionCreator = (newTaskInputValue) => { // action creator
     return {
         type: INPUT_TASK_VALUE_CHANGED,
         newTaskInputValue: newTaskInputValue
     }
 };
 
-// store.dispatch(catchInputChagesActionCreator(1));
+// store.dispatch(catchInputChangesActionCreator(1));
 
 export const removeTaskActionCreator = (id) => { // action creator
     return {
