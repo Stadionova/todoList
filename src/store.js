@@ -82,11 +82,15 @@ function toDoListReducer(state = initialState, action) {
             tasksList && tasksList.forEach((taskObj, index) => {
                 if (taskObj.id == action.id) {
                     stateCopy && stateCopy.splice(index, 1);
+                    if (stateCopy.length === 0) {
+                        localStorage.setItem('itemsMaxId_1', 0);
+                    }
                     localStorage.setItem('items', JSON.stringify(stateCopy));
                 }
             });
             return Object.assign({}, state, { // возвращаю копию стэйта
                 ...state,
+                maxId: localStorage.getItem('itemsMaxId_1'),
                 tasks: JSON.parse(localStorage.getItem('items'))
             });
         default:
