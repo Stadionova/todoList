@@ -1,29 +1,35 @@
 import EachTaskInList from "./EachTaskInList";
 import { removeTaskActionCreator } from "./../../store";
 import React from "react";
+import { connect } from "react-redux";
+
+const mapStateToProps = function (state) {
+    return {
+        id: state.maxId,
+        value: state.newTaskInputValue
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        removeTask: event => {
+            dispatch(removeTaskActionCreator(event.target.parentNode.getAttribute('id')));
+        }
+    }
+}
 
 class EachTaskInListContainer extends React.Component {
-    removeTaskHandler(event) {
-        let deletedTaskId = event.target.parentNode.getAttribute('id');
-        this.props.tasksList.map((task, index) => {
-            if (deletedTaskId == task.id) {
-                let action = removeTaskActionCreator(index);
-                this.props.dispatch(action);
-                return this.props.removeTask(index);
-            }
-        })
-    }
     render() {
         return (
             <div>
                 <EachTaskInList
                     id={this.props.taskValue.id}
                     value={this.props.taskValue.value}
-                    removeTask={this.removeTaskHandler.bind(this)}
+                    removeTask={this.props.removeTask}
                 />
             </div>
         )
     }
 }
 
-export default EachTaskInListContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(EachTaskInListContainer);

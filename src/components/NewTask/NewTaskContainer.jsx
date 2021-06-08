@@ -1,55 +1,27 @@
 import NewTask from "./NewTask";
-import React from "react";
-import { addTaskByEnterActionCreator } from "./../../store";
+import { addTaskByEnterActionCreator, catchInputChangesActionCreator } from "./../../store";
+import { connect } from "react-redux";
 
-class NewTaskContainer extends React.Component {
-    state = {
-        newTaskInputValue: '',
-        newTaskCreated: null
-    }
-    checkIsInputValueContainOnlySpaces = (inputValue) => {
-        if (inputValue.length > 0) {
-            let pattern = /^[\s]+$/;
-            if (!pattern.test(inputValue)) {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
-    catchInputChanges = (event) => {
-        let newState = this.state;
-        newState.newTaskInputValue = event.target.value;
-        this.setState(newState);
-        const currentValue = event.target.value;
-        return this.props.dispatch(currentValue);
-    }
-    enterHandler(event) {
-        if (event.code === 'Enter' || event.keyCode === 13) {
-            const isSpacesInInput = this.checkIsInputValueContainOnlySpaces(this.state.newTaskInputValue);
-            if (isSpacesInInput) {
-                let newState = this.state;
-                newState.newTaskCreated = 'true';
-                newState.newTaskInputValue = this.state.newTaskInputValue;
-                this.setState(newState);
-                let newLocalState = this.props.updateData(this.state);
-                newState.newTaskInputValue = '';
-                this.setState(newState);
-                return this.props.dispatch(addTaskByEnterActionCreator(newLocalState));
-            } else {
-                return false;
-            }
-        }
-    }
-    render() {
-        return (
-            <NewTask
-                newTaskInputValue={this.state.newTaskInputValue}
-                catchInputChanges={this.catchInputChanges}
-                enterHandler={this.enterHandler.bind(this)}
-            />
-        )
+const mapStateToProps = (state) => {
+    return {
+        newTaskInputValue: state.newTaskInputValue
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        enterHandler: event => {
+            if (event.code === 'Enter' || event.keyCode === 13) {
+                return dispatch(addTaskByEnterActionCreator(event.target.parentNode.getAttribute('id')));
+            }
+        },
+        catchInputChanges: event => {
+            const currentValue = event.target.value;
+            return dispatch(catchInputChangesActionCreator(currentValue));
+        }
+    }
+}
+
+const NewTaskContainer = connect(mapStateToProps, mapDispatchToProps)(NewTask);
 
 export default NewTaskContainer;

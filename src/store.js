@@ -4,9 +4,20 @@ import { INPUT_TASK_VALUE_CHANGED, REMOVE_TASK, ADD_TASK } from './actions'; // 
 const initialState = {
     newTaskInputValue: '',
     newTaskCreated: 'false',
-    maxId: 3,
-    tasks: [{}]
+    maxId: localStorage.getItem('itemsMaxId_1'),
+    tasks: localStorage.getItem('items') !== 'undefined' ? JSON.parse(localStorage.getItem('items')) : []
 };
+
+function checkIsInputValueContainOnlySpaces(inputValue) {
+    if (inputValue && inputValue.length > 0) {
+        let pattern = /^[\s]+$/;
+        if (!pattern.test(inputValue)) {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
 
 // reducer function, which get action & return changed state
 // (currentState, action) => newState
@@ -18,20 +29,66 @@ function toDoListReducer(state = initialState, action) {
                 ...state,
                 newTaskInputValue: action.newTaskInputValue
             });
+        case ADD_TASK:
+            const isSpacesInInput = checkIsInputValueContainOnlySpaces(state.newTaskInputValue);
+            if (isSpacesInInput) {
+                const currentMaxId = +localStorage.getItem('itemsMaxId_1');
+                localStorage.setItem('itemsMaxId_1', currentMaxId + 1);
+
+                let data;
+
+                if (localStorage.getItem('items')) {
+                    data = (localStorage.getItem('items') !== 'undefined')
+                        && (localStorage.getItem('items') !== 'null')
+                        ? JSON.parse(localStorage.getItem('items'))
+                        : [];
+
+                    const newTaskToStorage = [...data, {
+                        id: currentMaxId + 1,
+                        value: state.newTaskInputValue
+                    }];
+
+                    let itemsArray = newTaskToStorage;
+                    localStorage.setItem('items', JSON.stringify(itemsArray));
+                } else {
+                    data = [];
+
+                    const newTaskToStorage = [...data, {
+                        id: currentMaxId + 1,
+                        value: state.newTaskInputValue
+                    }];
+
+                    let itemsArray = newTaskToStorage;
+                    localStorage.setItem('items', JSON.stringify(itemsArray));
+                }
+
+                return Object.assign({}, state, { // возвращаю копию стэйта
+                    ...state,
+                    newTaskCreated: 'true',
+                    newTaskInputValue: '',
+                    maxId: currentMaxId + 1,
+                    tasks: [...data, {
+                        id: currentMaxId + 1,
+                        value: state.newTaskInputValue
+                    }]
+                });
+            } else {
+                return false;
+            }
         case REMOVE_TASK:
-            const allTasks = state.tasks;
-            allTasks.forEach((taskObj, index) => {
+            const tasksList = localStorage.getItem('items') !== 'undefined' ? JSON.parse(localStorage.getItem('items')) : [];
+            const stateCopy = state.tasks;
+
+            tasksList && tasksList.forEach((taskObj, index) => {
                 if (taskObj.id == action.id) {
-                    allTasks.splice(index, 1);
-                    return Object.assign({}, state, { // возвращаю копию стэйта
-                        ...state,
-                        tasks: allTasks
-                    });
+                    stateCopy && stateCopy.splice(index, 1);
+                    localStorage.setItem('items', JSON.stringify(stateCopy));
                 }
             });
-            return state;
-        case ADD_TASK:
-            return state;
+            return Object.assign({}, state, { // возвращаю копию стэйта
+                ...state,
+                tasks: JSON.parse(localStorage.getItem('items'))
+            });
         default:
             return state;
     }

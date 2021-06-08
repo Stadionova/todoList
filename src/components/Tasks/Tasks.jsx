@@ -1,16 +1,12 @@
 import EachTaskInListContainer from '../EachTaskInList/EachTaskInListContainer';
 import React from "react";
 
-const Tasks = ({ store, state, dispatch, removeTask, taskValue, tasksList }) => {
+const Tasks = ({ removeTask, taskValue }) => {
     return (
         <div>
             <EachTaskInListContainer
-                store={store}
-                state={state}
-                dispatch={dispatch}
                 removeTask={removeTask}
                 taskValue={taskValue}
-                tasksList={tasksList}
             />
         </div>
     )

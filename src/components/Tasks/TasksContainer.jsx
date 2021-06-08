@@ -2,20 +2,16 @@ import classes from "./Tasks.module.css";
 import Tasks from './Tasks';
 import React from "react";
 
-const TasksContainer = ({ store, dispatch, removeTask, tasksList }) => {
+const TasksContainer = ({ removeTask }) => {
+    const tasksList = localStorage.getItem('items') !== 'undefined' ? JSON.parse(localStorage.getItem('items')) : [];
     return (
         <div className={classes.tasksWrapper}>
-            { tasksList.map(task => {
-                localStorage.setItem('itemsMaxId_1', task.id);
+            { tasksList && tasksList.map(task => {
                 return (
                     <div className={classes.tasksList} >
                         <Tasks
-                            store={store}
-                            state={true}
-                            dispatch={dispatch}
                             removeTask={removeTask}
                             taskValue={task}
-                            tasksList={tasksList}
                         />
                     </div>
                 )
