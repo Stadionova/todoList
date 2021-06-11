@@ -12,7 +12,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         enterHandler: event => {
             if (event.code === 'Enter' || event.keyCode === 13) {
-                return dispatch(addTaskByEnterActionCreator(event.target.parentNode.getAttribute('id')));
+                return dispatch(addTaskByEnterActionCreator(event.target.parentNode.getAttribute('id'),
+                    event.target.parentNode.parentNode.getAttribute('class')));
             }
         },
         catchInputChanges: event => {

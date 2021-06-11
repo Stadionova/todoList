@@ -30,6 +30,15 @@ function toDoListReducer(state = initialState, action) {
                 newTaskInputValue: action.newTaskInputValue
             });
         case ADD_TASK:
+            function scrollTasksListBottom() {
+                document.querySelector(`.${action.tasksWrapper}`).scrollTop =
+                    document.querySelector(`.${action.tasksWrapper}`).scrollHeight;
+            }
+            document.querySelector(`.${action.tasksWrapper}`).addEventListener('scroll', scrollTasksListBottom);
+            scrollTasksListBottom();
+            setTimeout(() => {
+                document.querySelector(`.${action.tasksWrapper}`).removeEventListener('scroll', scrollTasksListBottom);
+            }, 1000);
             const isSpacesInInput = checkIsInputValueContainOnlySpaces(state.newTaskInputValue);
             if (isSpacesInInput) {
                 const currentMaxId = +localStorage.getItem('itemsMaxId_1');
@@ -66,6 +75,7 @@ function toDoListReducer(state = initialState, action) {
                     ...state,
                     newTaskCreated: 'true',
                     newTaskInputValue: '',
+                    enterTyped: true,
                     maxId: currentMaxId + 1,
                     tasks: [...data, {
                         id: currentMaxId + 1,
@@ -114,10 +124,11 @@ export const removeTaskActionCreator = (id) => { // action creator
     }
 };
 
-export const addTaskByEnterActionCreator = (id) => { // action creator
+export const addTaskByEnterActionCreator = (id, tasksWrapper) => { // action creator
     return {
         type: ADD_TASK,
-        id: id
+        id: id,
+        tasksWrapper: tasksWrapper
     }
 };
 
