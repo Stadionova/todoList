@@ -86,24 +86,33 @@ function toDoListReducer(state = initialState, action) {
                 return false;
             }
         case REMOVE_TASK:
-            const tasksList = localStorage.getItem('items') !== 'undefined' ? JSON.parse(localStorage.getItem('items')) : [];
-            const stateCopy = state.tasks;
-
-            tasksList && tasksList.forEach((taskObj, index) => {
-                if (taskObj.id == action.id) {
-                    tasksList && tasksList.splice(index, 1);
-                    if (stateCopy && stateCopy.length === 0) {
-                        localStorage.setItem('itemsMaxId_1', 0);
-                    } else if (tasksList) {
-                        localStorage.setItem('items', JSON.stringify(tasksList));
+            if (action.id) {
+                const tasksList = localStorage.getItem('items') !== 'undefined' ? JSON.parse(localStorage.getItem('items')) : [];
+                const stateCopy = state.tasks;
+                tasksList && tasksList.forEach((taskObj, index) => {
+                    if (taskObj.id == action.id) {
+                        tasksList && tasksList.splice(index, 1);
+                        if (stateCopy && stateCopy.length === 0) {
+                            localStorage.setItem('itemsMaxId_1', 0);
+                        } else if (tasksList) {
+                            localStorage.setItem('items', JSON.stringify(tasksList));
+                        }
                     }
-                }
-            });
-            return Object.assign({}, state, { // возвращаю копию стэйта
-                ...state,
-                maxId: localStorage.getItem('itemsMaxId_1'),
-                tasks: localStorage.getItem('items') !== 'undefined' ? JSON.parse(localStorage.getItem('items')) : []
-            });
+                });
+                return Object.assign({}, state, {
+                    ...state,
+                    maxId: localStorage.getItem('itemsMaxId_1'),
+                    tasks: localStorage.getItem('items') !== 'undefined' ? JSON.parse(localStorage.getItem('items')) : []
+                });
+            } else {
+                localStorage.setItem('items', JSON.stringify([]));
+                localStorage.setItem('itemsMaxId_1', 0);
+                return Object.assign({}, state, {
+                    ...state,
+                    maxId: localStorage.getItem('itemsMaxId_1'),
+                    tasks: localStorage.getItem('items') !== 'undefined' ? JSON.parse(localStorage.getItem('items')) : []
+                });
+            }
         default:
             return state;
     }

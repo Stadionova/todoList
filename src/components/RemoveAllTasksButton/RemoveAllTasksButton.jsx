@@ -1,10 +1,10 @@
 import classes from "./RemoveAllTasksButton.module.css";
 import React from "react";
 
-const RemoveAllTasksButton = ({ id, removeTask }) => {
+const RemoveAllTasksButton = ({ removeTask }) => {
     return (
-        <div className={classes.deleteButton} id={id}>
-            <button onClick={event => removeTask(event)}>
+        <div className={classes.deleteButton}>
+            <button onClick={event => removeTask()}>
                 <span>УДАЛИТЬ ВСЁ</span>
             </button>
         </div>

@@ -3,17 +3,14 @@ import { removeTaskActionCreator } from "../../store";
 import React from "react";
 import { connect } from "react-redux";
 
-const mapStateToProps = function (state) {
-    return {
-        id: state.maxId,
-        value: state.newTaskInputValue
-    }
+const mapStateToProps = function () {
+    return {};
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         removeTask: event => {
-            dispatch(removeTaskActionCreator(event.target.parentNode.getAttribute('id')));
+            dispatch(removeTaskActionCreator());
         }
     }
 }
@@ -23,9 +20,7 @@ class RemoveAllTasksButtonContainer extends React.Component {
         return (
             <div>
                 <RemoveAllTasksButton
-                    // id={this.props.taskValue.id}
-                    // value={this.props.taskValue.value}
-                    // removeTask={this.props.removeTask}
+                    removeTask={this.props.removeTask}
                 />
             </div>
         )
