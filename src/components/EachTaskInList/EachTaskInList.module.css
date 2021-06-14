@@ -37,3 +37,7 @@
     border: 1px solid black;
     cursor: pointer;
 }
+
+.task button:active {
+    background-color: darkkhaki;
+}
