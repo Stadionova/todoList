@@ -12,4 +12,9 @@
     border: white;
     background-color: darkkhaki;
     cursor: pointer;
+    color: white;
+}
+
+.deleteButton button:active {
+    background-color: sandybrown;
 }
